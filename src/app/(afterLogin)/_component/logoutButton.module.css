@@ -1,0 +1,42 @@
+.logoutButton {
+  width: 258px;
+  height: 66px;
+  padding: 12px;
+  display: flex;
+  margin: 12px 0;
+  cursor: pointer;
+  border: none;
+  align-items: center;
+  text-align: left;
+  background-color: transparent;
+  color: #fff;
+}
+.logoutButton:hover {
+  background-color: rgba(15,20,25, 0.1);
+  border-radius: 33px;
+}
+.logoutUserImage {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.logoutUserImage img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.logoutUserName {
+  margin: 0 12px;
+}
+.logoutUserName .nickname {
+  margin-bottom: 0.25em;
+  font-weight: bold;
+}
+.logoutUserName .userId {
+  color: rgb(113, 118, 123);
+}

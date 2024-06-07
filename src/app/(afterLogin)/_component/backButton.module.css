@@ -1,0 +1,17 @@
+.backButton {
+  width: 34px;
+  height: 34px;
+  background-color: transparent;
+  border: none;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.backButton svg {
+  fill: #fff;
+}
+.backButton:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+}

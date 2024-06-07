@@ -1,5 +1,7 @@
+import Home from "../../home/page";
+
 export default function Tweet() {
   return (
-    <h1>Tweet</h1>
+    <Home />
   )
 }

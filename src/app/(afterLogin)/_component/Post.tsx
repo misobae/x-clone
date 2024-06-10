@@ -2,14 +2,20 @@ import Link from "next/link";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
+import { faker } from "@faker-js/faker";
 
 import style from './post.module.css';
 import ActionButtons from "./ActionButtons";
 import PostArticle from "./PostArticle";
+import PostImages from "./PostImages";
 
 dayjs.extend(relativeTime);
 
-export default function Post() {
+type Props = {
+  noImage?: boolean
+}
+
+export default function Post({ noImage }: Props) {
   const target = {
     postId: 1,
     User: {
@@ -19,7 +25,15 @@ export default function Post() {
     },
     content: 'Tesla will soon reach $1,000. Hold!',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
+  }
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push(
+      {imageId: 1, link: faker.image.urlLoremFlickr()},
+      {imageId: 2, link: faker.image.urlLoremFlickr()},
+      {imageId: 3, link: faker.image.urlLoremFlickr()},
+      {imageId: 4, link: faker.image.urlLoremFlickr()},
+    )
   }
   return (
     <PostArticle post={target}>
@@ -27,22 +41,26 @@ export default function Post() {
         <div className={style.postUserSection}>
           <Link href={`/${target.User.id}`} className={style.postUserImage}>
             <img src={target.User.image} alt={target.User.nickname}/>
-            <div className={style.postShade} />
+            <div className={style.postShade}/>
           </Link>
         </div>
         <div className={style.postBody}>
           <div className={style.postMeta}>
             <Link href={`/${target.User.id}`}>
               <span className={style.postUserName}>{target.User.nickname}</span>
+              &nbsp;
               <span className={style.postUserId}>@{target.User.id}</span>
+              &nbsp;
+              ·
+              &nbsp;
             </Link>
-            <span className={style.postDate}>· {dayjs(target.createdAt).fromNow(true)}</span>
+            <span className={style.postDate}>{dayjs(target.createdAt).fromNow(true)}</span>
           </div>
-          <div  className={style.postContent}>{target.content}</div>
-          <div className={style.postImageSection}>
-
+          <div>{target.content}</div>
+          <div>
+            <PostImages post={target} />
           </div>
-          <ActionButtons />
+          <ActionButtons/>
         </div>
       </div>
     </PostArticle>

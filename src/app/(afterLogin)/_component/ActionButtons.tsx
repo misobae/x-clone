@@ -2,7 +2,10 @@
 import style from './post.module.css';
 import cx from 'classnames';
 
-export default function ActionButtons() {
+type Props = {
+  white?: boolean
+}
+export default function ActionButtons({ white }: Props) {
   const commented = true;
   const reposted = true;
   const liked = false;
@@ -13,7 +16,7 @@ export default function ActionButtons() {
 
   return (
     <div className={style.actionButtons}>
-      <div className={cx(style.commentButton, { [style.commented]: commented })}>
+      <div className={cx(style.commentButton, { [style.commented]: commented }, white && style.white)}>
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>

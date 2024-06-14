@@ -49,32 +49,24 @@
   display: flex;
   flex-direction: column;
   height: 56px;
-  position: relative;
   margin: 12px 0;
+  padding: 12px 8px 8px;
+  border: 1px solid rgb(83, 100, 113);
+  border-radius: 4px;
 }
 .inputLabel {
-  width: 100%;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  border: 1px solid rgb(207, 217, 222);
-  border-radius: 4px;
   font-size: 13px;
-  height: 56px;
-  padding: 8px 8px 0;
   color: rgb(83, 100, 113);
 }
 .inputLabel:focus-within {
   color: red;
 }
 .input {
-  width: 100%;
-  border: none;
-  font-size: 17px;
-  margin-top: 16px;
-  padding: 12px 8px 8px;
   outline: none;
+  border: none;
   background-color: transparent;
+  color: #fff;
+  font-size: 15px;
 }
 
 .actionButton {
@@ -82,15 +74,12 @@
   height: 50px;
   margin: 40px 0;
   border-radius: 25px;
-  background-color: rgb(15, 20, 25);
-  color: white;
+  background-color: #fff;
+  color: #000;
   font-size: 17px;
 }
 .actionButton:disabled {
   opacity: 0.5;
-}
-.actionButton:hover {
-  background-color: rgb(39,44,48);
 }
 .logo {
   margin: 0 auto;
@@ -118,4 +107,8 @@
   color: rgb(231, 233, 234);
   font-size: 31px;
   font-weight: 700;
+}
+.error {
+  font-weight: bold;
+  color: red;
 }

@@ -1,6 +1,14 @@
-import { auth as middleware } from "./auth";
+import { auth } from "./auth"
+import { NextResponse } from "next/server";
 
-// middleware를 적용할 routes
+export async function middleware() {
+  const session = await auth();
+  if (!session) {
+    return NextResponse.redirect('http://localhost:3000/i/flow/login');
+  }
+}
+
+// See "Matching Paths" below to learn more
 export const config = {
   matcher: ['/compose/tweet', '/home', '/explore', '/messages', '/search'],
 }

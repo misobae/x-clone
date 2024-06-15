@@ -29,7 +29,14 @@ export const {
         }
 
         const user = await authResponse.json();
-        return user;
+        
+        // 응답을 next-auth.js의 session에 맞게 구조화
+        return {
+          id: user.id,
+          name: user.nickname,
+          image: user.image,
+          ...user,
+        };
       },
     }),
   ]

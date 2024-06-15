@@ -39,5 +39,20 @@ export const {
         };
       },
     }),
-  ]
+  ],
+  callbacks: {
+    async session({ session, token }) { // 세션 객체의 user.id에 JWT id 할당
+      if (token.id) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+    async jwt({ token, user }) { // JWT의 user.id에 사용자 정보 객체의 id 할당
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+  },
+
 });

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import RQProvider from "./_component/RQProvider";
 import style from '@/app/(afterLogin)/layout.module.css';
 import Logo from '../../../public/logo.png';
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
@@ -43,17 +44,19 @@ export default async function AfterLoginLayout({
           </div>
         </section>
       </header>
-      <div className={style.rightSectionWrapper}>
-        <div className={style.rightSectionInner}>
-          <main className={style.main}>{children}</main>
-          <section className={style.rightSection}>
-            <RightSearchZone />
-            <TrendSection />
-            <FollowRecommendSection />
-          </section>
+      <RQProvider>
+        <div className={style.rightSectionWrapper}>
+          <div className={style.rightSectionInner}>
+            <main className={style.main}>{children}</main>
+            <section className={style.rightSection}>
+              <RightSearchZone />
+              <TrendSection />
+              <FollowRecommendSection />
+            </section>
+          </div>
         </div>
-      </div>
-    {modal}
+        {modal}
+      </RQProvider>
     </div>
   )
 }

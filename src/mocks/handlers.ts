@@ -106,4 +106,46 @@ export const handlers = [
       ]
     )
   }),
+  http.get('/api/followingPosts', async () => {
+    await delay(3000);
+    return HttpResponse.json(
+      [
+        {
+          postId: 1,
+          User: User[0],
+          content: `${1} FOLLOWING`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 2,
+          User: User[0],
+          content: `${2} FOLLOWING`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 3,
+          User: User[0],
+          content: `${3} FOLLOWING`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 4,
+          User: User[0],
+          content: `${4} FOLLOWING`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 5,
+          User: User[0],
+          content: `${5} FOLLOWING`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+      ]
+    )
+  }),
 ];

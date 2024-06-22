@@ -190,4 +190,19 @@ export const handlers = [
       ]
     )
   }),
+  http.get('/api/trends', ({ request }) => {
+    return HttpResponse.json(
+      [
+        {tagId: 1, title: '킹냥일', count: 1264},
+        {tagId: 2, title: '킹냥이', count: 1264},
+        {tagId: 3, title: '킹냥삼', count: 1264},
+        {tagId: 4, title: '킹냥사', count: 1264},
+        {tagId: 5, title: '킹냥오', count: 1264},
+        {tagId: 6, title: '킹냥육', count: 1264},
+        {tagId: 7, title: '킹냥칠', count: 1264},
+        {tagId: 8, title: '킹냥팔', count: 1264},
+        {tagId: 9, title: '킹냥구', count: 1264},
+      ]
+    )
+  }),
 ];

@@ -205,4 +205,7 @@ export const handlers = [
       ]
     )
   }),
+  http.get('/api/followRecommends', ({ request }) => {
+    return HttpResponse.json(User);
+  }),
 ];

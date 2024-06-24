@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse, StrictResponse } from 'msw'
 import { faker } from "@faker-js/faker";
 
 function generateDate() {
@@ -207,5 +207,59 @@ export const handlers = [
   }),
   http.get('/api/followRecommends', ({ request }) => {
     return HttpResponse.json(User);
+  }),
+  http.get('/api/users/:userId/posts', ({ request, params }) => {
+    const { userId } = params;
+    return HttpResponse.json(
+      [
+        {
+          postId: 1,
+          User: User[0],
+          content: `${1} ${userId}의 게시글`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 2,
+          User: User[0],
+          content: `${2} ${userId}의 게시글`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 3,
+          User: User[0],
+          content: `${3} ${userId}의 게시글`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 4,
+          User: User[0],
+          content: `${4} ${userId}의 게시글`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 5,
+          User: User[0],
+          content: `${5} ${userId}의 게시글`,
+          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          createdAt: generateDate(),
+        },
+      ]
+    )
+  }),
+  http.get('/api/users/:userId', ({ request, params }): StrictResponse<any> => {
+    const {userId} = params;
+    const found = User.find((v) => v.id === userId);
+    if (found) {
+      return HttpResponse.json(
+        found,
+      );
+    }
+    return HttpResponse.json({ message: 'no_such_user' }, {
+      status: 404,
+    })
   }),
 ];

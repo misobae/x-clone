@@ -3,14 +3,26 @@
 import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import style from './commentForm.module.css';
+import { useQueryClient } from "@tanstack/react-query";
 
-export default function CommentForm() {
+type Props = {
+  id: string;
+}
+export default function CommentForm({ id }: Props) {
   const [content, setContent] = useState('');
   const imageRef = useRef<HTMLInputElement>(null);
   const { data: me } = useSession();
+
   const onClickButton = () => {}
   const onSubmit = () => {}
   const onChange = () => {}
+
+  const queryClient = useQueryClient();
+  const post = queryClient.getQueryData(['posts', id]);
+  
+  if (!post) {
+    return null;
+  }
 
   return (
     <form className={style.postForm} onSubmit={onSubmit}>

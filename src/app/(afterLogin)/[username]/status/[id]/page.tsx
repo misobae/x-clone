@@ -32,7 +32,7 @@ export default async function Page({ params }: Props) {
         </div>
         <div className={style.emptyBox}></div>
         <SinglePost id={id} />
-        <CommentForm />
+        <CommentForm id={id} />
         <div>
           <Comments id={id} />
         </div>

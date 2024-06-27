@@ -9,9 +9,10 @@ import TabDecider from "./_component/TabDecider";
 
 export default async function Home() {
   const queryClient = new QueryClient(); // QueryClient 인스턴스 생성 (데이터 관리)
-  await queryClient.prefetchQuery({ // 데이터 미리 가져오기
+  await queryClient.prefetchInfiniteQuery({ // 데이터 미리 가져오기
     queryKey: ['posts', 'recommends'],
-    queryFn: getPostRecommends
+    queryFn: getPostRecommends,
+    initialPageParam: 0
   });
   const dehydratedState = dehydrate(queryClient); // queryClient의 상태를 직렬화. 서버 사이드에서 가져온 데이터를 클라이언트로 전달하기 위해 사용
   // 직렬화? 데이터 구조나 객체 상태를 저장하거나 전송할 수 있도록 바이트 스트림으로 변환하는 과정. 바이트 스트림으로 변환해야 네트워크 전송이 가능함

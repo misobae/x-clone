@@ -1,11 +1,12 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import { getFollowingPosts } from "../_lib/getFollowingPosts";
 import Post from "@/app/(afterLogin)/_component/Post";
 import { Post as IPost } from "@/model/post";
+import useInfiniteScroll from "@/\bhooks/useInfiniteScroll";
 
 
 export default function FollowingPosts() {
@@ -27,11 +28,7 @@ export default function FollowingPosts() {
     delay: 0,
   });
 
-  useEffect(() => {
-    if (inView) {
-      !isFetching && hasNextPage && fetchNextPage();
-    }
-  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+  useInfiniteScroll({ inView, isFetching, hasNextPage, fetchNextPage });
 
   if (isError) {
     return 'Error';

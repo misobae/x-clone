@@ -1,12 +1,13 @@
 "use client";
 
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useInView } from "react-intersection-observer";
 import { getPostRecommends } from "../_lib/getPostRecommends";
 import { Post as IPost } from "@/model/post";
 
 import Post from "@/app/(afterLogin)/_component/Post";
+import useInfiniteScroll from "@/\bhooks/useInfiniteScroll";
 
 export default function PostRecommends() {
   const {
@@ -29,11 +30,7 @@ export default function PostRecommends() {
     delay: 0,
   });
 
-  useEffect(() => {
-    if (inView) {
-      !isFetching && hasNextPage && fetchNextPage();
-    }
-  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+  useInfiniteScroll({ inView, isFetching, hasNextPage, fetchNextPage });
 
   if (isError) {
     return 'Error';

@@ -49,11 +49,8 @@ export const handlers = [
     })
   }),
   http.get('/api/postRecommends', async ({ request }) => {
-    console.log('추천게시글');
-    await delay(3000);
-    console.log('딜레이 종료');
-    const url = new URL(request.url)
-    const cursor = parseInt(url.searchParams.get('cursor') as string) || 0
+    const url = new URL(request.url);
+    const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
     return HttpResponse.json(
       [
         {
@@ -107,42 +104,55 @@ export const handlers = [
     )
   }),
   http.get('/api/followingPosts', async ({ request }) => {
-    await delay(3000);
+    const url = new URL(request.url);
+    const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
     return HttpResponse.json(
       [
         {
-          postId: 1,
+          postId: cursor + 1,
           User: User[0],
-          content: `${1} FOLLOWING`,
+          content: `${cursor + 1} FOLLOWING`,
+          Images: [
+            {imageId: 1, link: faker.image.urlLoremFlickr()},
+            {imageId: 2, link: faker.image.urlLoremFlickr()},
+            {imageId: 3, link: faker.image.urlLoremFlickr()},
+          ],
+          createdAt: generateDate(),
+        },
+        {
+          postId: cursor + 2,
+          User: User[0],
+          content: `${cursor + 2} FOLLOWING`,
           Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
           createdAt: generateDate(),
         },
         {
-          postId: 2,
+          postId: cursor + 3,
           User: User[0],
-          content: `${2} FOLLOWING`,
+          content: `${cursor + 3} FOLLOWING`,
           Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
           createdAt: generateDate(),
         },
         {
-          postId: 3,
+          postId: cursor + 4,
           User: User[0],
-          content: `${3} FOLLOWING`,
-          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          content: `${cursor + 4} FOLLOWING`,
+          Images: [
+            {imageId: 1, link: faker.image.urlLoremFlickr()},
+            {imageId: 1, link: faker.image.urlLoremFlickr()}
+          ],
           createdAt: generateDate(),
         },
         {
-          postId: 4,
+          postId: cursor + 5,
           User: User[0],
-          content: `${4} FOLLOWING`,
-          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
-          createdAt: generateDate(),
-        },
-        {
-          postId: 5,
-          User: User[0],
-          content: `${5} FOLLOWING`,
-          Images: [{imageId: 1, link: faker.image.urlLoremFlickr()}],
+          content: `${cursor + 5} FOLLOWING`,
+          Images: [
+            {imageId: 1, link: faker.image.urlLoremFlickr()},
+            {imageId: 1, link: faker.image.urlLoremFlickr()},
+            {imageId: 1, link: faker.image.urlLoremFlickr()},
+            {imageId: 1, link: faker.image.urlLoremFlickr()}
+          ],
           createdAt: generateDate(),
         },
       ]

@@ -7,7 +7,7 @@ import { getPostRecommends } from "../_lib/getPostRecommends";
 import { Post as IPost } from "@/model/post";
 
 import Post from "@/app/(afterLogin)/_component/Post";
-import useInfiniteScroll from "@/\bhooks/useInfiniteScroll";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 export default function PostRecommends() {
   const {

@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { getFollowingPosts } from "../_lib/getFollowingPosts";
 import Post from "@/app/(afterLogin)/_component/Post";
 import { Post as IPost } from "@/model/post";
-import useInfiniteScroll from "@/\bhooks/useInfiniteScroll";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 
 export default function FollowingPosts() {

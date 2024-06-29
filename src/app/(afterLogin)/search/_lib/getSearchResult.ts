@@ -1,10 +1,10 @@
 import { QueryFunction } from "@tanstack/query-core";
 import { Post } from "@/model/post";
 
-export const getSearchResult: QueryFunction<Post[], [_1: string, _2: string, searchParams: { q: string, pf?: string, f?: string }]>
-  = async ({ queryKey }) => {
+export const getSearchResult: QueryFunction<Post[], [_1: string, _2: string, searchParams: { q: string, pf?: string, f?: string }], number | undefined>
+  = async ({ queryKey, pageParam }) => {
   const [_1, _2, searchParams] = queryKey; // queryKey: ["posts", "search", searchParams],
-  const res = await fetch(`http://localhost:9090/api/search/${searchParams.q}?${searchParams.toString()}`, {
+  const res = await fetch(`http://localhost:9090/api/search/${searchParams.q}?${searchParams.toString()}?cursor=${pageParam ?? ''}`, {
     next: {
       tags: ['posts', 'search', searchParams.q],
     },

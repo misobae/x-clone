@@ -1,22 +1,27 @@
 import { QueryFunction } from "@tanstack/query-core";
 import { Post } from "@/model/post";
 
-export const getUserPosts: QueryFunction<Post[], [_1: string, _2: string, string]>
-  = async ({ queryKey }) => {
+const getUserPosts: QueryFunction<Post[], [_1: string, _2: string, string], number | undefined>
+  = async ({ queryKey, pageParam }) => {
   const [_1, _2, username] = queryKey;
-  const res = await fetch(`http://localhost:9090/api/users/${username}/posts`, {
+  const res = await fetch(`http://localhost:9090/api/users/${username}/posts?cursor=${pageParam ?? ''}`, {
     next: {
       tags: ['posts', 'users', username],
     },
     cache: 'no-store',
   });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+    throw new Error('Failed to fetch data');
   }
 
-  return res.json()
+  const posts = await res.json();
+  // 서버에서 반환된 데이터가 배열인지 확인
+  if (!Array.isArray(posts)) {
+    throw new Error('Invalid data format');
+  }
+  
+  return posts;
 }
+
+export default getUserPosts;

@@ -1,6 +1,6 @@
 import style from './profile.module.css';
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { getUserPosts } from './_lib/getUserPosts';
+import getUserPosts from './_lib/getUserPosts';
 import UserPosts from './_component/UserPosts';
 import UserInfo from './_component/UserInfo';
 import { getUser } from './_lib/getUser';
